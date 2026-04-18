@@ -28,3 +28,34 @@ python3 -m http.server 8000
 ```
 
 次にブラウザで `http://localhost:8000` を開いてください。
+
+## GitHub Pagesで公開する
+
+このリポジトリには、`main` ブランチへ push したときに自動でGitHub Pagesへ公開するワークフローを追加しています。
+
+### 1. リポジトリをGitHubへpushする
+
+```bash
+git add .
+git commit -m "Add GitHub Pages deployment workflow"
+git push origin main
+```
+
+### 2. GitHub Pagesを有効化する
+
+GitHubのリポジトリ設定で以下を確認してください。
+
+- `Settings` → `Pages`
+- `Source` は `GitHub Actions` を選択
+
+### 3. 公開URLを確認する
+
+通常は以下のURLで公開されます。
+
+- `https://macdown360.github.io/akiya.com/`
+
+初回公開は数十秒から数分かかることがあります。Actionsタブで `Deploy to GitHub Pages` ワークフローが成功していれば公開完了です。
+
+### 4. 独自ドメインを使う場合
+
+独自ドメインを使う場合は、GitHubの `Settings` → `Pages` でカスタムドメインを設定し、DNS側でGitHub Pages向けのレコードを追加してください。
