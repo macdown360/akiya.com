@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Akiya Match | 日本の空き家を、次の暮らしへ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner container">
+        <a class="brand" href="#" aria-label="Akiya Match ホーム">
+          <span class="brand-mark">AM</span>
+          <span class="brand-text">Akiya Match</span>
+        </a>
+        <form id="search-form" class="search-shell" aria-label="空き家検索">
+          <div class="search-field">
+            <label class="sr-only" for="keyword">キーワード</label>
+            <input id="keyword" name="keyword" type="text" placeholder="例: 古民家, 海の近く, 駅徒歩" />
+          </div>
+          <div class="search-field select">
+            <label class="sr-only" for="region">地域</label>
+            <select id="region" name="region">
+              <option value="all">全国</option>
+              <option value="北海道">北海道</option>
+              <option value="東北">東北</option>
+              <option value="関東">関東</option>
+              <option value="中部">中部</option>
+              <option value="近畿">近畿</option>
+              <option value="中国">中国</option>
+              <option value="四国">四国</option>
+              <option value="九州">九州</option>
+            </select>
+          </div>
+          <button class="search-button" type="submit">探す</button>
+        </form>
+        <button class="host-link" type="button">空き家を掲載する</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero container">
+        <p class="eyebrow">Akiya Marketplace</p>
+        <h1>日本各地の空き家を、<br />次の買い手につなぐ。</h1>
+        <p>
+          自治体・所有者・買い手を1つにつなぐ空き家マッチングプラットフォーム。
+          立地、予算、リノベ意向で最適な候補を提案します。
+        </p>
+      </section>
+
+      <section class="category-shell container" aria-label="目的カテゴリ">
+        <div class="category-track" id="purpose-filter" role="tablist" aria-label="利用目的フィルター">
+          <button class="pill is-active" data-purpose="all" role="tab" aria-selected="true">すべて</button>
+          <button class="pill" data-purpose="移住" role="tab" aria-selected="false">移住</button>
+          <button class="pill" data-purpose="二拠点" role="tab" aria-selected="false">二拠点生活</button>
+          <button class="pill" data-purpose="投資" role="tab" aria-selected="false">投資</button>
+          <button class="pill" data-purpose="事業" role="tab" aria-selected="false">事業利用</button>
+          <button class="pill" data-purpose="古民家再生" role="tab" aria-selected="false">古民家再生</button>
+        </div>
+      </section>
+
+      <section class="content container">
+        <div class="listing-area">
+          <div class="section-header">
+            <h2>注目の空き家</h2>
+            <p id="result-count"></p>
+          </div>
+          <div class="listing-grid" id="listing-grid"></div>
+        </div>
+
+        <aside class="match-panel" aria-labelledby="matching-title">
+          <h2 id="matching-title">買い手マッチング診断</h2>
+          <p>希望条件を入力すると、あなた向けの空き家候補を自動で提案します。</p>
+          <form id="matcher-form">
+            <label for="pref-region">希望エリア</label>
+            <select id="pref-region" name="pref-region">
+              <option value="all">全国どこでも</option>
+              <option value="北海道">北海道</option>
+              <option value="東北">東北</option>
+              <option value="関東">関東</option>
+              <option value="中部">中部</option>
+              <option value="近畿">近畿</option>
+              <option value="中国">中国</option>
+              <option value="四国">四国</option>
+              <option value="九州">九州</option>
+            </select>
+
+            <label for="max-budget">予算上限（万円）</label>
+            <input id="max-budget" name="max-budget" type="number" min="300" max="10000" step="50" value="2500" />
+
+            <label for="min-area">最低延床面積（㎡）</label>
+            <input id="min-area" name="min-area" type="number" min="40" max="300" step="5" value="80" />
+
+            <label for="renovation">リノベーション許容度</label>
+            <select id="renovation" name="renovation">
+              <option value="light">軽微なら可</option>
+              <option value="medium">中規模まで可</option>
+              <option value="heavy">大規模でも可</option>
+            </select>
+
+            <label for="purpose">主な用途</label>
+            <select id="purpose" name="purpose">
+              <option value="移住">移住</option>
+              <option value="二拠点">二拠点生活</option>
+              <option value="投資">投資</option>
+              <option value="事業">事業利用</option>
+              <option value="古民家再生">古民家再生</option>
+            </select>
+
+            <button type="submit" class="dark-button">診断する</button>
+          </form>
+
+          <div class="match-results" id="match-results" aria-live="polite"></div>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© 2026 Akiya Match</p>
+        <nav aria-label="フッターメニュー">
+          <a href="#">利用規約</a>
+          <a href="#">自治体向け導入</a>
+          <a href="#">サポート</a>
+        </nav>
+      </div>
+    </footer>
+
+    <template id="listing-card-template">
+      <article class="listing-card">
+        <div class="image-wrap">
+          <img alt="" loading="lazy" />
+          <button type="button" class="wish" aria-label="お気に入り登録">♡</button>
+        </div>
+        <div class="card-body">
+          <div class="card-top">
+            <h3></h3>
+            <span class="badge"></span>
+          </div>
+          <p class="location"></p>
+          <p class="meta"></p>
+          <p class="price"></p>
+          <button class="dark-button" type="button">内覧を相談する</button>
+        </div>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
